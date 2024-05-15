@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Recommendations</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f2f2f2; 
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333; 
+    }
+    form {
+      background-color: #fff; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+      color: #555; 
+    }
+    .btn-primary {
+      width: 100%;
+      margin-top: 15px;
+      background-color: #007bff; 
+      border-color: #007bff; 
+    }
+    .btn-primary:hover {
+      background-color: #0056b3; 
+      border-color: #0056b3; 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Product Recommendations</h1>
+    <form method="post">
+      <div class="form-group">
+        <label for="user_id">Enter Customer ID:</label>
+        <input type="number" class="form-control" id="user_id" name="user_id" required>
+      </div>
+      <div class="form-group">
+        <label for="num_recommendations">Number of Recommendations:</label>
+        <input type="number" class="form-control" id="num_recommendations" name="num_recommendations" min="1" value="5" max="10" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Get Recommendations</button>
+    </form>
+    {% if recommendations %}
+    <div class="mt-4">
+        <h2>Recommendations:</h2>
+        <ol>
+          {% set count = 1 %}
+          {% for x in recommendations %}
+            <li> {{ x }}</li>
+            {% set count = count + 1 %}
+          {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
